@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+\title{An Estiamtion of Moody's Model}
+\author{Xiaotong Ding}
+\begin{document}
+\maketitle
+\section{Moody's Model}
+Concering the rating of a technology company, Moody's has a staight forward idea: to combine all the factors in linear model.    In Moody's Model, ther are 10 factors, each factor makes effect to the model. \\
+In Moody's Model, $$Aaa=1,Aa=3,A=6,Baa=9,Ba=12,B=15,Caa=18,Ca=21$$. This is just the a period. For example, if one company have rating score of $2$, its rating will be $Aa$.\\
+After the combination of all the factors that concerns, one can find that the Moody's rating is still different from just the linear combination.\\
+Since Moody's has $10$ factors to estimate the rating, we can denot:
+\begin{equation}
+\hat{Y_j}=\sum_{i=1}^{10} a_{ij} X_{ij}
+\end{equation}
+Hereby, $\sum_{i=1}^{10} a_i=1$, which is know.\\
+\\
+The Moody's rating is
+\begin{equation}
+Y_j=\hat{Y_j}+\epsilon
+\end{equation}
+Where $\epsilon$ might be a function of $X_i$ maybe not. \\
+\section{Problems}
+Just as what we have discussed, this is in fact not a \textbf{statisitcs}. It is just a linear combination. However, if one wants to do the prediction or analysis, we are faced with several problems.\\
+\subsection{$\epsilon$}
+The $\epsilon$ is unknown, which needs us to drive it out.
+\subsection{Unknow factors}
+Several factors are unknown. They may be familiar with Moody's, or maybe Moody's does not know as well.
+\section{Model}
+Before all, we need to try our best to get all the data we need. However, maybe we still can not find the data we want. And I found that \textbf{most of the data we known are the inside status of a company}.Therefore, my idea is to use the historical data to estimate the unknown factors. First of all, one can change the order of the variables:
+\begin{equation}
+Y_j=\sum_{i=1}^{7} X_{(ij)}+\sum_{i=8}^{10} X_{(ij)}+\epsilon_j
+\end{equation}
+Hereby, in order to make the question clear, we can rearrage the order of the variables, such that
+\begin{equation}\
+Y=\sum_{i=1}^{7} X_i +\sum_{i=8}^{10} X_i+\epsilon_j
+\end{equation}
+Hereby, I suppose $X_i,i=1,2,...,7$ are known and the rest are unknown. Therefore, we emphasize on $X_i, i\geq 7$.\\
+Consider $X_8$. $X_8$ might be affected by the internal ones, and it might also be affected by the outside one. Suppose\\
+\begin{equation}
+X_{8}=f_8{}(X_1,X_2,X_3,...,X_7)+\eta_8
+\end{equation}
+Hereby,$f()$ means the part of $X_8$ only affected by the internal factors, and $\eta_8$ are the ouside effect, which is not affected by the company itself. \\
+In order to approxiamte $f()$, suppose
+\begin{equation}
+f_8(X_1,..,X_7)=f_8(0,...,0)+\sum_{i=1}^7 \frac{\partial f}{\partial X_i} X_i+ \gamma_8
+\end{equation}
+$\gamma_8$ might be related to $X_1,...,X_7$. However, we can still supppose:
+\begin{equation}
+f_8(X_1,...,X_7)=\sum_{i=1}^7 b_{8i} X_i+\Gamma_8
+\end{equation}
+Hereby $\Gamma_8=\gamma_8+f_8(0,...,0)$. Denote $\theta_8=\Gamma_8+\eta_8$.
+Therefore,
+\begin{equation}
+Y_j=\sum_{i=1}^7 (a_i+b_{8i}+b_{9i}+b_{10i}){}X_{ij}+\zeta_j
+\end{equation}
+Where
+$$\zeta_j=\epsilon_j+\theta_{8j}+\theta_{9j}+\theta_{10j}$$
+Therefore, our aim is to get $b_8,b_9$ and $b_{10}$.
+\section{Method}
+\subsection{Linear Regression}
+\subsection{Logistics Regression}
+\subsection{Tree}
+\section{Potential Problems}
+\subsection{Non-normal}
+\subsection{Correlation}
+\subsection{What's more}
+\end{document}
